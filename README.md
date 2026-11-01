@@ -15,7 +15,7 @@ Needs Python 3.9 or newer and a web browser. Nothing to install, no internet nee
 python3 main.py
 ```
 
-(Windows: `python main.py`.) Then open **http://127.0.0.1:8000** in your browser. Press Ctrl+C to stop.
+(Windows: `python main.py`.) The app opens in your web browser by itself (if it doesn't, open http://127.0.0.1:8000). Press Ctrl+C to stop.
 
 Keep the folders as they are: `main.py` must sit next to `data/` and `static/`.
 Opening `static/index.html` directly won't work, because the page needs `main.py` running.

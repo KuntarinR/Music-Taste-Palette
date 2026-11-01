@@ -45,7 +45,7 @@ HOW TO RUN IT
 3. Start the app:
        macOS / Linux:   python3 main.py
        Windows:         python main.py      (or: py main.py)
-4. Open this address in your browser (the terminal also prints it):
+4. Your web browser opens the app by itself. If it doesn't, open this address:
        http://127.0.0.1:8000
 5. To stop the app, press Ctrl+C in the terminal.
 

@@ -1,4 +1,4 @@
-"""RUN THIS FILE: python3 main.py (Windows: python main.py), then open http://127.0.0.1:8000.
+"""RUN THIS FILE: python3 main.py (Windows: python main.py). The app opens in your web browser by itself.
 
 Web-based app (local http.server), so it will NOT work inside Ed; the GUI is a browser page in static/.
 No libraries outside Python's built-ins; the page uses Matter.js, included in static/vendor/.
@@ -6,6 +6,8 @@ No libraries outside Python's built-ins; the page uses Matter.js, included in st
 
 import json
 import sys
+import threading
+import webbrowser
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
@@ -269,8 +271,10 @@ def main():
         server = ThreadingHTTPServer((HOST, PORT), RequestHandler)
     except OSError:
         sys.exit(f"Error: port {PORT} is already in use. Close the other copy of the app and try again.")
-    print(f"The app is running. Open http://{HOST}:{PORT} in your browser.")
+    address = f"http://{HOST}:{PORT}"
+    print(f"The app is opening in your browser. If it doesn't, open {address}")
     print("Press Ctrl+C to stop.")
+    threading.Timer(0.5, webbrowser.open, args=(address,)).start()     # once the server is listening
     try:
         server.serve_forever()
     except KeyboardInterrupt:
