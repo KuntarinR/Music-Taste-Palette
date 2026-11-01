@@ -1,0 +1,822 @@
+[
+  {
+    "title": "Die with a Smile",
+    "artist": "Lady Gaga and Bruno Mars",
+    "genre": "pop",
+    "era": "new_gen",
+    "chart_rank": 1,
+    "mood": {
+      "desire": 0.4,
+      "beauty": 0.2,
+      "sadness": 0.25,
+      "anxiety": 0.15
+    }
+  },
+  {
+    "title": "Luther",
+    "artist": "Kendrick Lamar and SZA",
+    "genre": "r&b",
+    "era": "new_gen",
+    "chart_rank": 2,
+    "mood": {
+      "joy": 0.1,
+      "desire": 0.45,
+      "beauty": 0.25,
+      "dreaminess": 0.2
+    }
+  },
+  {
+    "title": "A Bar Song (Tipsy)",
+    "artist": "Shaboozey",
+    "genre": "country",
+    "era": "new_gen",
+    "chart_rank": 3,
+    "mood": {
+      "amusement": 0.3,
+      "joy": 0.25,
+      "pumped_up": 0.45
+    }
+  },
+  {
+    "title": "Lose Control",
+    "artist": "Teddy Swims",
+    "genre": "r&b",
+    "era": "new_gen",
+    "chart_rank": 4,
+    "mood": {
+      "desire": 0.4,
+      "sadness": 0.3,
+      "anxiety": 0.3
+    }
+  },
+  {
+    "title": "Birds of a Feather",
+    "artist": "Billie Eilish",
+    "genre": "pop",
+    "era": "new_gen",
+    "chart_rank": 5,
+    "mood": {
+      "joy": 0.2,
+      "desire": 0.5,
+      "beauty": 0.15,
+      "anxiety": 0.15
+    }
+  },
+  {
+    "title": "Beautiful Things",
+    "artist": "Benson Boone",
+    "genre": "pop",
+    "era": "new_gen",
+    "chart_rank": 6,
+    "mood": {
+      "joy": 0.3,
+      "desire": 0.15,
+      "beauty": 0.2,
+      "anxiety": 0.35
+    }
+  },
+  {
+    "title": "Ordinary",
+    "artist": "Alex Warren",
+    "genre": "pop",
+    "era": "new_gen",
+    "chart_rank": 7,
+    "mood": {
+      "desire": 0.45,
+      "beauty": 0.3,
+      "dreaminess": 0.25
+    }
+  },
+  {
+    "title": "I Had Some Help",
+    "artist": "Post Malone and Morgan Wallen",
+    "genre": "country",
+    "era": "new_gen",
+    "chart_rank": 8,
+    "mood": {
+      "amusement": 0.2,
+      "sadness": 0.1,
+      "annoyance": 0.4,
+      "defiance": 0.3
+    }
+  },
+  {
+    "title": "APT.",
+    "artist": "Rosé and Bruno Mars",
+    "genre": "k-pop",
+    "era": "new_gen",
+    "chart_rank": 9,
+    "mood": {
+      "amusement": 0.35,
+      "joy": 0.2,
+      "pumped_up": 0.45
+    }
+  },
+  {
+    "title": "Pink Pony Club",
+    "artist": "Chappell Roan",
+    "genre": "pop",
+    "era": "new_gen",
+    "chart_rank": 10,
+    "mood": {
+      "joy": 0.15,
+      "triumph": 0.3,
+      "defiance": 0.3,
+      "pumped_up": 0.25
+    }
+  },
+  {
+    "title": "Espresso",
+    "artist": "Sabrina Carpenter",
+    "genre": "pop",
+    "era": "new_gen",
+    "chart_rank": 12,
+    "mood": {
+      "amusement": 0.3,
+      "desire": 0.2,
+      "triumph": 0.35,
+      "pumped_up": 0.15
+    }
+  },
+  {
+    "title": "That's So True",
+    "artist": "Gracie Abrams",
+    "genre": "pop",
+    "era": "new_gen",
+    "chart_rank": 14,
+    "mood": {
+      "amusement": 0.15,
+      "sadness": 0.3,
+      "anxiety": 0.2,
+      "annoyance": 0.35
+    }
+  },
+  {
+    "title": "TV Off",
+    "artist": "Kendrick Lamar",
+    "genre": "hip_hop",
+    "era": "new_gen",
+    "chart_rank": 15,
+    "mood": {
+      "triumph": 0.25,
+      "defiance": 0.3,
+      "pumped_up": 0.45
+    }
+  },
+  {
+    "title": "Timeless",
+    "artist": "The Weeknd and Playboi Carti",
+    "genre": "hip_hop",
+    "era": "new_gen",
+    "chart_rank": 16,
+    "mood": {
+      "triumph": 0.45,
+      "defiance": 0.3,
+      "pumped_up": 0.25
+    }
+  },
+  {
+    "title": "Not Like Us",
+    "artist": "Kendrick Lamar",
+    "genre": "hip_hop",
+    "era": "new_gen",
+    "chart_rank": 17,
+    "mood": {
+      "triumph": 0.3,
+      "annoyance": 0.1,
+      "defiance": 0.4,
+      "pumped_up": 0.2
+    }
+  },
+  {
+    "title": "Taste",
+    "artist": "Sabrina Carpenter",
+    "genre": "pop",
+    "era": "new_gen",
+    "chart_rank": 19,
+    "mood": {
+      "amusement": 0.4,
+      "desire": 0.25,
+      "defiance": 0.35
+    }
+  },
+  {
+    "title": "Squabble Up",
+    "artist": "Kendrick Lamar",
+    "genre": "hip_hop",
+    "era": "new_gen",
+    "chart_rank": 20,
+    "mood": {
+      "triumph": 0.2,
+      "defiance": 0.3,
+      "pumped_up": 0.5
+    }
+  },
+  {
+    "title": "Nokia",
+    "artist": "Drake",
+    "genre": "hip_hop",
+    "era": "new_gen",
+    "chart_rank": 24,
+    "mood": {
+      "joy": 0.1,
+      "desire": 0.3,
+      "pumped_up": 0.45,
+      "nostalgia": 0.15
+    }
+  },
+  {
+    "title": "Golden",
+    "artist": "Huntrix",
+    "genre": "k-pop",
+    "era": "new_gen",
+    "chart_rank": 25,
+    "mood": {
+      "joy": 0.2,
+      "triumph": 0.5,
+      "pumped_up": 0.3
+    }
+  },
+  {
+    "title": "Wildflower",
+    "artist": "Billie Eilish",
+    "genre": "pop",
+    "era": "new_gen",
+    "chart_rank": 26,
+    "mood": {
+      "desire": 0.25,
+      "beauty": 0.15,
+      "sadness": 0.35,
+      "anxiety": 0.25
+    }
+  },
+  {
+    "title": "Messy",
+    "artist": "Lola Young",
+    "genre": "pop",
+    "era": "new_gen",
+    "chart_rank": 28,
+    "mood": {
+      "sadness": 0.2,
+      "anxiety": 0.15,
+      "annoyance": 0.35,
+      "defiance": 0.3
+    }
+  },
+  {
+    "title": "Stargazing",
+    "artist": "Myles Smith",
+    "genre": "pop",
+    "era": "new_gen",
+    "chart_rank": 29,
+    "mood": {
+      "joy": 0.15,
+      "desire": 0.35,
+      "beauty": 0.15,
+      "dreaminess": 0.35
+    }
+  },
+  {
+    "title": "Love Me Not",
+    "artist": "Ravyn Lenae",
+    "genre": "r&b",
+    "era": "new_gen",
+    "chart_rank": 30,
+    "mood": {
+      "joy": 0.25,
+      "desire": 0.45,
+      "anxiety": 0.3
+    }
+  },
+  {
+    "title": "Good Luck, Babe!",
+    "artist": "Chappell Roan",
+    "genre": "pop",
+    "era": "new_gen",
+    "chart_rank": 31,
+    "mood": {
+      "desire": 0.25,
+      "sadness": 0.3,
+      "annoyance": 0.1,
+      "defiance": 0.35
+    }
+  },
+  {
+    "title": "No One Noticed",
+    "artist": "The Marías",
+    "genre": "indie",
+    "era": "new_gen",
+    "chart_rank": 32,
+    "mood": {
+      "desire": 0.25,
+      "sadness": 0.4,
+      "dreaminess": 0.35
+    }
+  },
+  {
+    "title": "Too Sweet",
+    "artist": "Hozier",
+    "genre": "rock",
+    "era": "new_gen",
+    "chart_rank": 34,
+    "mood": {
+      "amusement": 0.3,
+      "desire": 0.3,
+      "relaxation": 0.25,
+      "defiance": 0.15
+    }
+  },
+  {
+    "title": "Sailor Song",
+    "artist": "Gigi Perez",
+    "genre": "indie",
+    "era": "new_gen",
+    "chart_rank": 36,
+    "mood": {
+      "desire": 0.4,
+      "beauty": 0.15,
+      "sadness": 0.2,
+      "dreaminess": 0.25
+    }
+  },
+  {
+    "title": "Manchild",
+    "artist": "Sabrina Carpenter",
+    "genre": "pop",
+    "era": "new_gen",
+    "chart_rank": 38,
+    "mood": {
+      "amusement": 0.35,
+      "annoyance": 0.45,
+      "defiance": 0.2
+    }
+  },
+  {
+    "title": "Anxiety",
+    "artist": "Doechii",
+    "genre": "hip_hop",
+    "era": "new_gen",
+    "chart_rank": 39,
+    "mood": {
+      "sadness": 0.25,
+      "anxiety": 0.55,
+      "defiance": 0.2
+    }
+  },
+  {
+    "title": "Sticky",
+    "artist": "Tyler, the Creator",
+    "genre": "hip_hop",
+    "era": "new_gen",
+    "chart_rank": 41,
+    "mood": {
+      "amusement": 0.3,
+      "triumph": 0.2,
+      "pumped_up": 0.5
+    }
+  },
+  {
+    "title": "Undressed",
+    "artist": "Sombr",
+    "genre": "indie",
+    "era": "new_gen",
+    "chart_rank": 42,
+    "mood": {
+      "desire": 0.3,
+      "sadness": 0.4,
+      "anxiety": 0.1,
+      "nostalgia": 0.2
+    }
+  },
+  {
+    "title": "Back to Friends",
+    "artist": "Sombr",
+    "genre": "indie",
+    "era": "new_gen",
+    "chart_rank": 44,
+    "mood": {
+      "desire": 0.35,
+      "sadness": 0.4,
+      "nostalgia": 0.25
+    }
+  },
+  {
+    "title": "Bed Chem",
+    "artist": "Sabrina Carpenter",
+    "genre": "pop",
+    "era": "new_gen",
+    "chart_rank": 45,
+    "mood": {
+      "amusement": 0.3,
+      "joy": 0.15,
+      "desire": 0.55
+    }
+  },
+  {
+    "title": "Sports Car",
+    "artist": "Tate McRae",
+    "genre": "pop",
+    "era": "new_gen",
+    "chart_rank": 46,
+    "mood": {
+      "desire": 0.45,
+      "defiance": 0.15,
+      "pumped_up": 0.4
+    }
+  },
+  {
+    "title": "Mystical Magical",
+    "artist": "Benson Boone",
+    "genre": "pop",
+    "era": "new_gen",
+    "chart_rank": 47,
+    "mood": {
+      "joy": 0.2,
+      "desire": 0.3,
+      "beauty": 0.15,
+      "dreaminess": 0.35
+    }
+  },
+  {
+    "title": "Whatchu Kno About Me",
+    "artist": "GloRilla and Sexyy Red",
+    "genre": "hip_hop",
+    "era": "new_gen",
+    "chart_rank": 48,
+    "mood": {
+      "triumph": 0.3,
+      "defiance": 0.45,
+      "pumped_up": 0.25
+    }
+  },
+  {
+    "title": "Please Please Please",
+    "artist": "Sabrina Carpenter",
+    "genre": "pop",
+    "era": "new_gen",
+    "chart_rank": 50,
+    "mood": {
+      "amusement": 0.2,
+      "desire": 0.3,
+      "anxiety": 0.35,
+      "annoyance": 0.15
+    }
+  },
+  {
+    "title": "DtMF",
+    "artist": "Bad Bunny",
+    "genre": "latin",
+    "era": "new_gen",
+    "chart_rank": 51,
+    "mood": {
+      "joy": 0.15,
+      "beauty": 0.1,
+      "sadness": 0.25,
+      "nostalgia": 0.5
+    }
+  },
+  {
+    "title": "Your Idol",
+    "artist": "Saja Boys",
+    "genre": "k-pop",
+    "era": "new_gen",
+    "chart_rank": 54,
+    "mood": {
+      "desire": 0.4,
+      "triumph": 0.3,
+      "defiance": 0.3
+    }
+  },
+  {
+    "title": "Abracadabra",
+    "artist": "Lady Gaga",
+    "genre": "pop",
+    "era": "new_gen",
+    "chart_rank": 56,
+    "mood": {
+      "desire": 0.2,
+      "dreaminess": 0.25,
+      "defiance": 0.15,
+      "pumped_up": 0.4
+    }
+  },
+  {
+    "title": "All I Want for Christmas Is You",
+    "artist": "Mariah Carey",
+    "genre": "pop",
+    "era": "oldies",
+    "chart_rank": 59,
+    "mood": {
+      "joy": 0.35,
+      "desire": 0.4,
+      "pumped_up": 0.25
+    }
+  },
+  {
+    "title": "Daisies",
+    "artist": "Justin Bieber",
+    "genre": "pop",
+    "era": "new_gen",
+    "chart_rank": 60,
+    "mood": {
+      "desire": 0.45,
+      "sadness": 0.25,
+      "anxiety": 0.3
+    }
+  },
+  {
+    "title": "Soda Pop",
+    "artist": "Saja Boys",
+    "genre": "k-pop",
+    "era": "new_gen",
+    "chart_rank": 61,
+    "mood": {
+      "amusement": 0.2,
+      "joy": 0.35,
+      "desire": 0.25,
+      "pumped_up": 0.2
+    }
+  },
+  {
+    "title": "Like Him",
+    "artist": "Tyler, the Creator",
+    "genre": "hip_hop",
+    "era": "new_gen",
+    "chart_rank": 62,
+    "mood": {
+      "sadness": 0.4,
+      "anxiety": 0.25,
+      "nostalgia": 0.35
+    }
+  },
+  {
+    "title": "Residuals",
+    "artist": "Chris Brown",
+    "genre": "r&b",
+    "era": "new_gen",
+    "chart_rank": 63,
+    "mood": {
+      "desire": 0.4,
+      "sadness": 0.35,
+      "nostalgia": 0.25
+    }
+  },
+  {
+    "title": "Last Christmas",
+    "artist": "Wham!",
+    "genre": "pop",
+    "era": "oldies",
+    "chart_rank": 65,
+    "mood": {
+      "desire": 0.25,
+      "sadness": 0.4,
+      "nostalgia": 0.35
+    }
+  },
+  {
+    "title": "Am I Okay?",
+    "artist": "Megan Moroney",
+    "genre": "country",
+    "era": "new_gen",
+    "chart_rank": 66,
+    "mood": {
+      "desire": 0.3,
+      "sadness": 0.25,
+      "anxiety": 0.45
+    }
+  },
+  {
+    "title": "Rockin' Around the Christmas Tree",
+    "artist": "Brenda Lee",
+    "genre": "rock",
+    "era": "oldies",
+    "chart_rank": 67,
+    "mood": {
+      "amusement": 0.25,
+      "joy": 0.45,
+      "pumped_up": 0.3
+    }
+  },
+  {
+    "title": "How It's Done",
+    "artist": "Huntrix",
+    "genre": "k-pop",
+    "era": "new_gen",
+    "chart_rank": 68,
+    "mood": {
+      "triumph": 0.45,
+      "defiance": 0.3,
+      "pumped_up": 0.25
+    }
+  },
+  {
+    "title": "Baile Inolvidable",
+    "artist": "Bad Bunny",
+    "genre": "latin",
+    "era": "new_gen",
+    "chart_rank": 70,
+    "mood": {
+      "sadness": 0.3,
+      "pumped_up": 0.3,
+      "nostalgia": 0.4
+    }
+  },
+  {
+    "title": "Cry for Me",
+    "artist": "The Weeknd",
+    "genre": "r&b",
+    "era": "new_gen",
+    "chart_rank": 73,
+    "mood": {
+      "desire": 0.2,
+      "sadness": 0.4,
+      "annoyance": 0.1,
+      "defiance": 0.3
+    }
+  },
+  {
+    "title": "Bad Dreams",
+    "artist": "Teddy Swims",
+    "genre": "r&b",
+    "era": "new_gen",
+    "chart_rank": 74,
+    "mood": {
+      "desire": 0.3,
+      "sadness": 0.35,
+      "anxiety": 0.35
+    }
+  },
+  {
+    "title": "Denial Is a River",
+    "artist": "Doechii",
+    "genre": "hip_hop",
+    "era": "new_gen",
+    "chart_rank": 75,
+    "mood": {
+      "amusement": 0.35,
+      "triumph": 0.15,
+      "anxiety": 0.2,
+      "defiance": 0.3
+    }
+  },
+  {
+    "title": "BMF",
+    "artist": "SZA",
+    "genre": "r&b",
+    "era": "new_gen",
+    "chart_rank": 76,
+    "mood": {
+      "desire": 0.45,
+      "triumph": 0.3,
+      "defiance": 0.25
+    }
+  },
+  {
+    "title": "I'm Gonna Love You",
+    "artist": "Cody Johnson and Carrie Underwood",
+    "genre": "country",
+    "era": "new_gen",
+    "chart_rank": 78,
+    "mood": {
+      "joy": 0.3,
+      "desire": 0.55,
+      "beauty": 0.15
+    }
+  },
+  {
+    "title": "I Am Not Okay",
+    "artist": "Jelly Roll",
+    "genre": "country",
+    "era": "new_gen",
+    "chart_rank": 79,
+    "mood": {
+      "sadness": 0.4,
+      "triumph": 0.25,
+      "anxiety": 0.35
+    }
+  },
+  {
+    "title": "Jingle Bell Rock",
+    "artist": "Bobby Helms",
+    "genre": "rock",
+    "era": "oldies",
+    "chart_rank": 81,
+    "mood": {
+      "amusement": 0.2,
+      "joy": 0.45,
+      "pumped_up": 0.35
+    }
+  },
+  {
+    "title": "Revolving Door",
+    "artist": "Tate McRae",
+    "genre": "pop",
+    "era": "new_gen",
+    "chart_rank": 82,
+    "mood": {
+      "desire": 0.25,
+      "sadness": 0.35,
+      "anxiety": 0.25,
+      "annoyance": 0.15
+    }
+  },
+  {
+    "title": "What It Sounds Like",
+    "artist": "Huntrix",
+    "genre": "k-pop",
+    "era": "new_gen",
+    "chart_rank": 83,
+    "mood": {
+      "hope": 0.3,
+      "triumph": 0.3,
+      "beauty": 0.25,
+      "sadness": 0.15
+    }
+  },
+  {
+    "title": "Hard Fought Hallelujah",
+    "artist": "Brandon Lake and Jelly Roll",
+    "genre": "country",
+    "era": "new_gen",
+    "chart_rank": 84,
+    "mood": {
+      "hope": 0.4,
+      "triumph": 0.25,
+      "relaxation": 0.2,
+      "joy": 0.15
+    }
+  },
+  {
+    "title": "Liar",
+    "artist": "Jelly Roll",
+    "genre": "country",
+    "era": "new_gen",
+    "chart_rank": 86,
+    "mood": {
+      "triumph": 0.25,
+      "anxiety": 0.3,
+      "defiance": 0.45
+    }
+  },
+  {
+    "title": "Tu Boda",
+    "artist": "Óscar Maydon and Fuerza Regida",
+    "genre": "latin",
+    "era": "new_gen",
+    "chart_rank": 87,
+    "mood": {
+      "sadness": 0.45,
+      "annoyance": 0.25,
+      "nostalgia": 0.3
+    }
+  },
+  {
+    "title": "Nuevayol",
+    "artist": "Bad Bunny",
+    "genre": "latin",
+    "era": "new_gen",
+    "chart_rank": 89,
+    "mood": {
+      "joy": 0.35,
+      "pumped_up": 0.45,
+      "nostalgia": 0.2
+    }
+  },
+  {
+    "title": "Free",
+    "artist": "Ejae and Andrew Choi",
+    "genre": "k-pop",
+    "era": "new_gen",
+    "chart_rank": 92,
+    "mood": {
+      "desire": 0.35,
+      "sadness": 0.2,
+      "dreaminess": 0.2,
+      "defiance": 0.25
+    }
+  },
+  {
+    "title": "Takedown",
+    "artist": "Huntrix",
+    "genre": "k-pop",
+    "era": "new_gen",
+    "chart_rank": 93,
+    "mood": {
+      "triumph": 0.3,
+      "defiance": 0.45,
+      "pumped_up": 0.25
+    }
+  },
+  {
+    "title": "Folded",
+    "artist": "Kehlani",
+    "genre": "r&b",
+    "era": "new_gen",
+    "chart_rank": 98,
+    "mood": {
+      "desire": 0.4,
+      "sadness": 0.45,
+      "anxiety": 0.15
+    }
+  }
+]

@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Discover your music taste palette</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ===== Homepage ===== -->
+  <main id="screen-home" class="screen is-active">
+    <div class="home">
+    <section class="hero">
+      <h1 class="hero__title">Discover your music taste <em>palette</em>, made from your songs.</h1>
+      <p class="hero__subtitle">
+        Paste a song you love and Python reads it word by word, finding the
+        <span class="tag tag--pink">emotions</span> hiding inside.
+        Together they glow into a cloud of colour that is yours alone, and grows with every song.
+      </p>
+      <div class="hero__buttons">
+        <button class="button button--primary" data-go="nickname">Get started</button>
+      </div>
+    </section>
+
+    <!-- The app's identity: a sample aura, soft glowing colours (aura-preview.js). Decoration only. -->
+    <figure class="sample-aura" aria-hidden="true">
+      <canvas class="sample-aura__canvas" id="sample-aura-canvas"></canvas>
+      <figcaption class="sample-aura__caption">
+        <span class="sample-aura__title">Every song<br>adds a colour</span>
+      </figcaption>
+    </figure>
+    </div>
+
+  </main>
+
+  <!-- ===== Nickname ===== -->
+  <main id="screen-nickname" class="screen mesh">
+    <button class="round-button" data-go="home" aria-label="Back to the homepage">&larr;</button>
+
+    <form class="nickname" id="nickname-form" novalidate>
+      <label class="nickname__title" for="nickname-input">What should I <em>call</em> you?</label>
+      <div class="nickname__field">
+        <input class="nickname__input" id="nickname-input" type="text" maxlength="10"
+               autocomplete="nickname" spellcheck="false" placeholder="Your nickname">
+        <span class="nickname__count" id="nickname-count">0/10</span>
+      </div>
+      <p class="nickname__hint" id="nickname-hint">English letters or numbers, up to 10 characters.</p>
+      <button class="button button--primary" type="submit">Next</button>
+    </form>
+  </main>
+
+  <!-- ===== This or That (one question at a time) ===== -->
+  <main id="screen-question" class="screen mesh">
+    <button class="round-button" id="question-back" aria-label="Previous question">&larr;</button>
+
+    <section class="question">
+      <p class="question__step" id="question-step"></p>
+      <p class="question__lead" id="question-lead"></p>
+      <h1 class="question__title" id="question-title"></h1>
+      <div class="choice-cards" id="choice-cards"></div>
+      <button class="button button--primary question__confirm" id="question-confirm" disabled>Yes, I'm sure!</button>
+    </section>
+
+    <div class="dots" id="question-dots" aria-hidden="true"></div>
+  </main>
+
+  <!-- ===== Genres ===== -->
+  <main id="screen-genres" class="screen mesh">
+    <button class="round-button" id="genres-back" aria-label="Previous question">&larr;</button>
+
+    <section class="question">
+      <p class="question__step" id="genres-step"></p>
+      <p class="question__lead" id="genres-lead"></p>
+      <h1 class="question__title">Pick up to <em>3</em> genres you love</h1>
+      <div class="genre-pills" id="genre-pills"></div>
+      <button class="button button--primary" id="genres-next" disabled>Yes, I'm sure!</button>
+    </section>
+
+    <div class="dots" id="genres-dots" aria-hidden="true"></div>
+  </main>
+
+  <!-- ===== Lyrics ===== -->
+  <main id="screen-lyrics" class="screen mesh">
+    <button class="round-button" id="lyrics-back" data-go="genres" aria-label="Back to genres">&larr;</button>
+
+    <form class="lyrics" id="lyrics-form" novalidate>
+      <label class="lyrics__title" id="lyrics-title" for="lyrics-input">Be ready and type in<br>or paste your <em>lyrics</em> here!</label>
+
+      <input class="lyrics__name" id="song-name" maxlength="40" autocomplete="off"
+             placeholder="Song name (optional)" aria-label="Song name (optional)">
+
+      <div class="lyrics__box">
+        <svg class="lyrics__icon" viewBox="0 0 48 48" fill="#161616" aria-hidden="true">
+          <path d="M8 28v-4a16 16 0 0 1 32 0v4" fill="none" stroke="#161616" stroke-width="4" stroke-linecap="round"/>
+          <rect x="6" y="26" width="10" height="15" rx="4"/><rect x="32" y="26" width="10" height="15" rx="4"/>
+        </svg>
+        <textarea class="lyrics__input" id="lyrics-input" rows="3" spellcheck="false"
+                  placeholder="Paste or type the lyrics of a song you love, any way you like. No need to split the lines.&#10;A whole song works best, or at least a verse and the chorus."></textarea>
+      </div>
+      <div class="lyrics__meta">
+        <span class="lyrics__error" id="lyrics-error" role="alert"></span>
+        <span class="lyrics__count" id="lyrics-count">0 / 3,000</span>
+      </div>
+
+      <button class="button button--primary" id="lyrics-submit" type="submit">Read my lyrics</button>
+    </form>
+
+    <!-- Letters fall into a pile here as you type. Decoration only. -->
+    <div class="letter-area" id="letter-area" aria-hidden="true"></div>
+  </main>
+
+  <!-- ===== Loading (between lyrics and result) ===== -->
+  <main id="screen-loading" class="screen mesh">
+    <div class="loading">
+      <p class="loading__label">Reading your lyrics</p>
+      <div class="equaliser" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+  </main>
+
+  <!-- ===== Result: 4 cards that slide ===== -->
+  <main id="screen-result" class="screen mesh">
+    <div class="carousel">
+      <div class="carousel__track" id="cards-track">
+        <!-- 5. A teaser for what comes next: your aura, still hidden. The 4 result cards go in front of it. -->
+        <article class="result-card result-card--teaser" id="teaser-card" data-go="aura">
+          <canvas class="teaser__canvas" id="teaser-canvas" aria-hidden="true"></canvas>
+          <div class="teaser__text">
+            <p class="teaser__kicker">One more thing</p>
+            <h2 class="teaser__title">Your aura is ready</h2>
+            <p class="teaser__body">Every word you shared just became a spark of colour. See the colour of how you feel.</p>
+          </div>
+          <span class="teaser__cta">See my aura &rarr;</span>
+        </article>
+      </div>
+    </div>
+
+    <!-- Dots under the cards show which card you're on -->
+    <div class="carousel__controls">
+      <div class="carousel__dots" id="cards-dots"></div>
+    </div>
+
+  </main>
+
+  <!-- ===== Your aura: the player's feelings across all their songs, growing with every song (aura.js) ===== -->
+  <main id="screen-aura" class="screen mesh">
+    <div class="aura">
+      <header class="aura__header">
+        <p class="result-card__kicker" id="aura-kicker"></p>
+        <h1 class="aura__title">Your aura</h1>
+        <!-- Your overall colour (worked out in Python), its name and what it says about you -->
+        <p class="glow-line" id="glow-line" hidden>
+          <span class="glow-line__swatch" id="glow-swatch"></span>
+          <span class="glow-line__name" id="glow-name"></span>
+          <span class="glow-line__meaning" id="glow-meaning"></span>
+        </p>
+        <p class="aura__subtitle" id="aura-subtitle"></p>
+        <!-- Which aura you're looking at; start a fresh one when your music changes a lot -->
+        <div class="aura-bar">
+          <span class="aura-bar__label" id="aura-label"></span>
+          <button class="aura-bar__button" id="aura-new" aria-expanded="false">+ New aura</button>
+          <button class="aura-bar__button" id="aura-back" hidden>&larr; Back to my current aura</button>
+          <button class="aura-bar__button aura-bar__export" id="export-stats">Export my stats &darr;</button>
+        </div>
+        <form class="new-aura glass" id="new-aura-form" hidden>
+          <p class="new-aura__text">Feel like your music has changed a lot? Start a fresh aura for your new vibe.
+            This one stays saved, and you can look back at it any time.</p>
+          <input class="aura-card__input" id="new-aura-name" maxlength="30" autocomplete="off"
+                 placeholder="Name it (optional), e.g. Summer 2026" aria-label="Name for the new aura (optional)">
+          <p class="aura-card__error" id="new-aura-error" role="alert"></p>
+          <div class="new-aura__buttons">
+            <button class="button button--primary" id="new-aura-start">Start new aura</button>
+            <button class="button button--ghost" type="button" id="new-aura-cancel">Cancel</button>
+          </div>
+        </form>
+      </header>
+
+      <div class="aura__layout">
+        <div class="aura__main">
+        <section class="aura__stage glass" id="aura-stage" aria-label="Your aura: a glow of colour for each feeling">
+          <p class="aura__empty">Your aura is still empty. Add a song and it starts to glow.</p>
+          <div class="aura__controls">
+            <button class="aura__control" id="aura-zoom-in" aria-label="Zoom in">+</button>
+            <button class="aura__control" id="aura-zoom-out" aria-label="Zoom out">&minus;</button>
+            <button class="aura__control" id="aura-fit" aria-label="Fit the whole aura">&#8689;</button>
+          </div>
+          <ul class="aura-legend" id="aura-legend"></ul>
+          <label class="aura-switch">
+            <input type="checkbox" id="aura-labels" role="switch" autocomplete="off">
+            <span class="aura-switch__track" aria-hidden="true"></span>
+            Show emotions
+          </label>
+          <p class="aura__hint" id="aura-hint">Each colour is a feeling &middot; hover a sparkle to see a word &middot; drag &middot; click a feeling to light it up &middot; pinch to zoom</p>
+          <div class="viz-tip" id="aura-tip" hidden></div>
+        </section>
+
+        <section class="aura-card glass aura-timeline-card">
+          <h2 class="aura-card__title">Your colours over time</h2>
+          <p class="aura-card__text">Each square is one song in its own colour, from your first song to your latest. Hover one to see which.</p>
+          <div class="aura-timeline viz-area" id="aura-timeline"></div>
+          <div class="viz-tip" id="timeline-tip" hidden></div>
+        </section>
+
+        <!-- Your result cards, kept here as a stack you can open -->
+        <section class="aura-card glass stats-card">
+          <div class="stats-card__head">
+            <div>
+              <h2 class="aura-card__title">Your stats</h2>
+              <p class="aura-card__text">The cards from your latest play.</p>
+            </div>
+            <button class="button button--ghost" id="stats-toggle" aria-expanded="false">See my stats</button>
+          </div>
+          <div class="stats-stack" id="stats-stack" hidden>
+            <div class="stats-stack__deck" id="stats-deck"></div>
+            <div class="stats-stack__controls">
+              <span class="stats-stack__count" id="stats-count"></span>
+              <button class="button button--primary" id="stats-next">Next card &rarr;</button>
+            </div>
+          </div>
+        </section>
+        </div>
+
+        <aside class="aura__side">
+          <form class="aura-card glass" id="add-song">
+            <h2 class="aura-card__title">Add a song</h2>
+            <p class="aura-card__text">Paste another song you love. Its feelings join your aura, no questions needed.</p>
+            <input class="aura-card__input" id="song-title" maxlength="40" placeholder="Song name (optional)" autocomplete="off">
+            <textarea class="aura-card__input aura-card__lyrics" id="song-lyrics" maxlength="3000" placeholder="Paste the lyrics here"></textarea>
+            <p class="aura-card__error" id="add-song-error" role="alert"></p>
+            <button class="button button--primary" id="add-song-button">Add to my aura</button>
+          </form>
+
+          <div class="aura-card glass">
+            <h2 class="aura-card__title">Songs in your aura</h2>
+            <ol class="aura-songs" id="aura-songs"></ol>
+          </div>
+
+          <div class="aura-card glass" id="auras-card" hidden>
+            <h2 class="aura-card__title">Your auras</h2>
+            <p class="aura-card__text">Every aura you've had, newest first. Open one to look back.</p>
+            <ol class="aura-songs" id="aura-list"></ol>
+          </div>
+
+        </aside>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Back to the homepage, shown on every page except the homepage and the loading screen -->
+  <button class="home-button" id="home-button" data-go="home" hidden>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11 12 3l9 8M5 9.5V21h5v-6h4v6h5V9.5" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span>Home</span>
+  </button>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- The 4 result cards. Filled in by result.js on the result page, and again in the stats stack. -->
+  <template id="result-cards">
+    <!-- 1. What we heard: the lyrics tapestry -->
+    <article class="result-card result-card--viz">
+      <p class="result-card__kicker">What we heard</p>
+      <p class="hero-number"><span class="hero-number__value" data-part="hero-percent"></span><span class="hero-number__label" data-part="hero-emotion"></span></p>
+      <p class="result-card__text result-card__text--small">Your lyrics, word by word. The highlighted words made us feel something.</p>
+      <div class="viz-area">
+        <div class="tapestry" data-part="tapestry"></div>
+      </div>
+      <ul class="tapestry-legend" data-part="tapestry-legend"></ul>
+    </article>
+
+    <!-- 2. Your aesthetic: the orbit of domes -->
+    <article class="result-card">
+      <p class="result-card__kicker" data-part="kicker"></p>
+      <div class="viz-area orbit" data-part="orbit"></div>
+      <h1 class="result-card__title" data-part="name"></h1>
+      <p class="result-card__match" data-part="match"></p>
+      <p class="result-card__tagline" data-part="tagline"></p>
+      <p class="result-card__text" data-part="description"></p>
+      <ol class="orbit-ranking" data-part="ranking"></ol>
+    </article>
+
+    <!-- 3. By the numbers: big numbers and the emotion staircase -->
+    <article class="result-card result-card--numbers">
+      <p class="result-card__kicker">By the numbers</p>
+      <div class="stat-tiles" data-part="stat-tiles"></div>
+
+      <p class="result-card__label">Emotion staircase</p>
+      <div class="viz-area">
+        <div class="staircase" data-part="staircase"></div>
+      </div>
+      <p class="staircase__missing" data-part="staircase-missing"></p>
+    </article>
+
+    <!-- 4. Songs -->
+    <article class="result-card result-card--songs">
+      <div class="result-card__sticker result-card__sticker--small" aria-hidden="true">&#9834;</div>
+      <p class="result-card__kicker">You might also like</p>
+      <h2 class="result-card__title">Songs for your mood</h2>
+      <div class="song-list" data-part="songs"></div>
+    </article>
+  </template>
+
+  <script src="vendor/matter.min.js"></script>
+  <script src="js/physics.js"></script>
+  <script src="js/aesthetics.js"></script>
+  <script src="js/aura-preview.js"></script>
+  <script src="js/survey.js"></script>
+  <script src="js/lyrics.js"></script>
+  <script src="js/loading.js"></script>
+  <script src="js/viz.js"></script>
+  <script src="js/result.js"></script>
+  <script src="js/aura.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

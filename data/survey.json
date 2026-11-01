@@ -1,0 +1,120 @@
+{
+  "questions": [
+    {
+      "key": "era",
+      "lead": "Okay {name}, so do you like…",
+      "question": "New Gen or Oldies?",
+      "options": {
+        "new_gen": {
+          "label": "New Gen",
+          "aesthetic": null,
+          "result_text": "You keep your playlist fresh with the newest releases.",
+          "description": "Fresh drops, viral hits and whatever's on repeat right now."
+        },
+        "oldies": {
+          "label": "Oldies",
+          "aesthetic": "nostalgic",
+          "result_text": "You believe the old songs hit different.",
+          "description": "Classics, vinyl crackle and songs that hit different."
+        }
+      }
+    },
+    {
+      "key": "love_song",
+      "lead": "Nice choice! Next one.",
+      "question": "Heartbreak or romantic love song?",
+      "options": {
+        "heartbreak": {
+          "label": "Heartbreak",
+          "aesthetic": "hopeless_romantic",
+          "result_text": "You feel every heartbreak song like it was written about you.",
+          "description": "Sad songs that say exactly what you can't."
+        },
+        "romantic": {
+          "label": "Romantic",
+          "aesthetic": "rainbow_sunshine",
+          "result_text": "You're here for the sweet, happy love songs.",
+          "description": "Butterflies, slow dances and sweet love songs."
+        }
+      }
+    },
+    {
+      "key": "spotlight",
+      "lead": "Be honest. Are you more…",
+      "question": "Main Character or Daydreamer?",
+      "options": {
+        "main_character": {
+          "label": "Main Character",
+          "aesthetic": "main_character",
+          "result_text": "You walk into every song like it's your movie.",
+          "description": "Every song is the soundtrack to your movie."
+        },
+        "daydreamer": {
+          "label": "Daydreamer",
+          "aesthetic": "dreamer",
+          "result_text": "Music is where your mind floats away.",
+          "description": "Headphones on, mind somewhere far away."
+        }
+      }
+    },
+    {
+      "key": "vibe",
+      "lead": "Ooh, interesting! Would you rather…",
+      "question": "Party all night or Sunny afternoon?",
+      "options": {
+        "party": {
+          "label": "Party all night",
+          "aesthetic": "fun_at_the_party",
+          "result_text": "You'd pick a dance floor over a quiet night.",
+          "description": "Loud, bouncy and made for the dance floor."
+        },
+        "sunny": {
+          "label": "Sunny afternoon",
+          "aesthetic": "rainbow_sunshine",
+          "result_text": "Golden light and good vibes are your happy place.",
+          "description": "Warm, bright songs for golden afternoons."
+        }
+      }
+    },
+    {
+      "key": "mindset",
+      "lead": "Almost there! Right now you're…",
+      "question": "Unbothered or Manifesting?",
+      "options": {
+        "unbothered": {
+          "label": "Unbothered",
+          "aesthetic": "protecting_my_peace",
+          "result_text": "Your peace comes first, and you don't explain yourself.",
+          "description": "Calm vibes and zero drama. Peace comes first."
+        },
+        "manifesting": {
+          "label": "Manifesting",
+          "aesthetic": "manifestor",
+          "result_text": "You speak your dreams into being.",
+          "description": "Songs that remind you it's all coming your way."
+        }
+      }
+    }
+  ],
+  "genres_lead": "Last one, {name}!",
+  "genres": {
+    "classical": "Classical",
+    "pop": "Popular (Pop)",
+    "rock": "Rock",
+    "jazz": "Jazz",
+    "hip_hop": "Hip-Hop/Rap",
+    "electronic": "Electronic (EDM)",
+    "r&b": "Rhythm and Blues (R&B)",
+    "country": "Country",
+    "folk": "Folk/Traditional",
+    "k-pop": "K-pop",
+    "latin": "Latin",
+    "indie": "Indie"
+  },
+  "max_genres": 3,
+  "weights": {
+    "answer_bonus": 0.03,
+    "aesthetic_genre_bonus": 0.03,
+    "song_genre_bonus": 0.05
+  }
+}

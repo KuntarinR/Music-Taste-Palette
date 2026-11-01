@@ -1,0 +1,132 @@
+{
+  "nostalgic": {
+    "name": "Nostalgic",
+    "tagline": "Born in the wrong decade, and proud of it.",
+    "description": "You hear a song and suddenly you're somewhere else: a summer that ended, a friendship that faded, a version of yourself you still miss. Your music is a time machine, and you don't mind if the trip hurts a little. Bittersweet is your favourite flavour.",
+    "profile": {
+      "nostalgia": 0.5,
+      "sadness": 0.35,
+      "beauty": 0.15
+    },
+    "genres": [
+      "folk",
+      "rock",
+      "jazz",
+      "indie"
+    ],
+    "colour": "#D4A373"
+  },
+  "rainbow_sunshine": {
+    "name": "Rainbow Sunshine",
+    "tagline": "You are a walking ray of sunshine, and you know it.",
+    "description": "You find the bright side even on a grey day. Your playlists sound like golden-hour drives, warm afternoons and songs that make strangers smile back. Life is beautiful to you, and your music never lets you forget it.",
+    "profile": {
+      "joy": 0.5,
+      "beauty": 0.35,
+      "relaxation": 0.15
+    },
+    "genres": [
+      "pop",
+      "folk",
+      "country"
+    ],
+    "colour": "#FFD166"
+  },
+  "fun_at_the_party": {
+    "name": "You Must Be Fun at the Party",
+    "tagline": "You must be fun at the party. Literally.",
+    "description": "The aux cord was made for you. Your music is loud, bouncy and impossible to sit still to, with a sense of humour hiding in every chorus. Wherever you go, the energy goes up, and someone always ends up dancing.",
+    "profile": {
+      "pumped_up": 0.5,
+      "amusement": 0.35,
+      "joy": 0.15
+    },
+    "genres": [
+      "electronic",
+      "hip_hop",
+      "k-pop",
+      "latin"
+    ],
+    "colour": "#FF4D9D"
+  },
+  "hopeless_romantic": {
+    "name": "Hopeless Romantic",
+    "tagline": "Your love life has a soundtrack, and every song is about them.",
+    "description": "You fall hard and you feel everything: the butterflies, the late-night overthinking, the heartbreak you replay on purpose. Your music turns every glance into a movie scene. Waiting for a text back has never sounded so good.",
+    "profile": {
+      "desire": 0.5,
+      "sadness": 0.35,
+      "anxiety": 0.15
+    },
+    "genres": [
+      "r&b",
+      "pop",
+      "latin"
+    ],
+    "colour": "#E5989B"
+  },
+  "main_character": {
+    "name": "Main Character",
+    "tagline": "Cue the slow-motion walk. This is your movie.",
+    "description": "Your music is a hype speech on repeat. You choose songs about winning, rising and walking into rooms like you own them. Setbacks are just the montage before your comeback scene.",
+    "profile": {
+      "triumph": 0.5,
+      "pumped_up": 0.35,
+      "defiance": 0.15
+    },
+    "genres": [
+      "hip_hop",
+      "rock",
+      "k-pop"
+    ],
+    "colour": "#7B2CBF"
+  },
+  "dreamer": {
+    "name": "Dreamer",
+    "tagline": "Head in the clouds, headphones on, somewhere far away.",
+    "description": "You don't just listen to music, you float inside it. Your songs are full of stars, soft haze and places that only exist at 3am. Reality is fine, but the world in your headphones is prettier.",
+    "profile": {
+      "dreaminess": 0.5,
+      "beauty": 0.35,
+      "relaxation": 0.15
+    },
+    "genres": [
+      "classical",
+      "electronic",
+      "indie"
+    ],
+    "colour": "#A2D2FF"
+  },
+  "protecting_my_peace": {
+    "name": "Protecting My Peace",
+    "tagline": "idk, idc, idgaf. Do not disturb.",
+    "description": "You've done the drama and you're not going back. Your music is calm on the surface with a firm line underneath: soft beats, slow mornings and lyrics that say no without apologising. Your peace is not up for negotiation.",
+    "profile": {
+      "relaxation": 0.5,
+      "defiance": 0.35,
+      "annoyance": 0.15
+    },
+    "genres": [
+      "jazz",
+      "r&b",
+      "classical"
+    ],
+    "colour": "#84A98C"
+  },
+  "manifestor": {
+    "name": "Manifestor",
+    "tagline": "Say it, believe it, become it.",
+    "description": "Your playlist is a pep talk. You love songs that speak in \"I am\": I am enough, I am worthy, it's going to be okay. Music isn't just something you listen to, it's how you speak your future into being.",
+    "profile": {
+      "hope": 0.5,
+      "relaxation": 0.35,
+      "triumph": 0.15
+    },
+    "genres": [
+      "r&b",
+      "country",
+      "folk"
+    ],
+    "colour": "#2EC4B6"
+  }
+}

@@ -1,0 +1,1495 @@
+/* ===== Design tokens ===== */
+:root {
+  /* base */
+  --bg: #F2F2EF;
+  --ink: #161616;
+  --muted: #6E6E6A;
+  --line: #D9D9D4;
+  --white: #FFFFFF;
+  --cream: #F7F1E3;
+
+  /* glass style: frosted see-through panels on the white page */
+  --glass: rgba(255, 255, 255, 0.45);
+  --glass-strong: rgba(255, 255, 255, 0.62);
+  --glass-border: rgba(150, 140, 190, 0.22);    /* a faint edge, so white glass shows on a white page */
+  --glass-blur: blur(22px) saturate(160%);
+  --glass-shadow: 0 12px 40px rgba(70, 60, 130, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+
+  /* colour scheme (from the UI reference) */
+  --pink: #F2A7C8;
+  --yellow: #F6D046;
+  --orange: #E8613C;
+  --blue: #B9CBE8;
+  --lime: #DDF27C;
+  --lavender: #CDBDF6;
+  --mint: #A8DDD8;
+  --green: #A7D98C;
+
+  /* type */
+  --font-display: "Iowan Old Style", "Baskerville", "Palatino Linotype", Georgia, serif;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+
+  --radius-pill: 999px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  background: #FFFFFF;                /* plain white on every page */
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== Screens: only the active one is shown ===== */
+.screen { display: none; }
+.screen.is-active { display: block; }
+
+/* ===== Homepage ===== */
+#screen-home {
+  position: relative;
+  background: #FFFFFF;                /* plain white, to keep the homepage minimal */
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow: hidden;
+}
+
+/* Hero text on the left, the sample aura on the right (stacked on small screens) */
+.home {
+  position: relative;
+  z-index: 1;                       /* above the sample aura's glow */
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 400px);
+  align-items: center;
+  gap: 48px;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 9vh 32px 0;
+}
+
+.hero {
+  text-align: left;
+}
+
+.hero .hero__subtitle { margin-left: 0; }
+.hero .hero__buttons { justify-content: flex-start; }
+
+/* The sample aura: no box, it glows straight on the white page */
+.sample-aura {
+  position: relative;
+  height: min(62vh, 540px);
+  min-height: 420px;
+  margin: 0;
+  /* no box: the aura glows straight on the white page */
+}
+
+.sample-aura__canvas {
+  position: absolute; inset: 0; width: 100%; height: 100%; cursor: crosshair;
+  /* fade out towards the edges, so the glow has no hard border on the white page */
+  -webkit-mask-image: radial-gradient(50% 50% at 50% 50%, #000 62%, transparent 100%);
+  mask-image: radial-gradient(50% 50% at 50% 50%, #000 62%, transparent 100%);
+}
+
+.sample-aura__caption {
+  position: absolute;
+  top: 22px;
+  left: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: var(--ink);
+  pointer-events: none;
+}
+
+.sample-aura__title { font: 500 22px/1.15 var(--font-body); letter-spacing: -0.01em; }
+
+@media (max-width: 860px) {
+  .home { grid-template-columns: 1fr; gap: 28px; padding: 8vh 16px 0; }
+  .hero { text-align: center; }
+  .hero .hero__subtitle { margin-left: auto; }
+  .hero .hero__buttons { justify-content: center; }
+  .sample-aura { width: min(380px, 100%); height: 440px; min-height: 0; margin: 0 auto 48px; }
+}
+
+.hero__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(40px, 7vw, 82px);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+}
+
+.hero__title em {
+  font-style: italic;
+}
+
+.hero__subtitle {
+  margin: 16px auto 0;
+  max-width: 440px;
+  font-size: 14px;
+  line-height: 1.9;                 /* room for the word tags */
+  color: var(--muted);
+}
+
+.hero__subtitle .tag { padding: 0 10px 0 8px; font-size: 12.5px; }
+
+.hero__subtitle strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.hero__buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+/* ===== Buttons ===== */
+.button {
+  padding: 14px 30px;
+  border: 1.5px solid var(--ink);
+  border-radius: var(--radius-pill);
+  font: 600 15px var(--font-body);
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+
+.button:hover { transform: translateY(-2px); }
+.button:active { transform: translateY(0); }
+.button:focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; }
+
+.button--primary {
+  background: var(--ink);
+  color: var(--white);
+}
+
+.button--ghost {
+  border-color: var(--glass-border);
+  background: var(--glass);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  color: var(--ink);
+  box-shadow: 0 4px 16px rgba(70, 60, 130, 0.08);
+}
+
+.button--ghost:hover {
+  background: rgba(255, 255, 255, 0.75);
+}
+
+/* ===== Round back button and coloured word tags ===== */
+.round-button {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border: 1px solid var(--glass-border);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.6);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-shadow);
+  color: var(--ink);
+  font-size: 24px;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.round-button:hover { transform: translateX(-3px); }
+.round-button:focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; }
+
+/* Highlighted words: small coloured pills with a symbol, like the reference */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 3px 16px 3px 12px;
+  border-radius: var(--radius-pill);
+  line-height: 1.5;
+  white-space: nowrap;
+  color: var(--ink);
+}
+
+.tag::before {
+  content: "\2726";                /* ✦ */
+  font-size: 0.8em;
+}
+
+.tag:nth-of-type(even)::before {
+  content: "\2738";                /* ✸ */
+}
+
+.tag--pink     { background: color-mix(in srgb, var(--pink) 35%, transparent); }
+
+/* ===== Shared layout for the survey screens ===== */
+#screen-nickname,
+#screen-question,
+#screen-genres {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 24px 16px 96px;
+}
+
+/* ===== Nickname ===== */
+.nickname {
+  max-width: 640px;
+  margin: 0 auto;
+  padding-top: 14vh;
+  text-align: center;
+}
+
+.nickname__title {
+  display: block;
+  margin-bottom: 40px;
+  font-family: var(--font-display);
+  font-size: clamp(36px, 6vw, 68px);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.nickname__field {
+  position: relative;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+.nickname__input {
+  width: 100%;
+  padding: 14px 64px 14px 8px;
+  border: none;
+  border-bottom: 2px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  font: 400 clamp(26px, 4vw, 36px) var(--font-display);
+  text-align: center;
+  outline: none;
+}
+
+.nickname__input::placeholder { color: #B5B5AF; }
+.nickname__input:focus { border-bottom-color: var(--orange); }
+
+.nickname__count {
+  position: absolute;
+  right: 4px;
+  bottom: 16px;
+  font: 13px var(--font-mono);
+  color: var(--muted);
+}
+
+.nickname__hint {
+  min-height: 3em;
+  margin: 16px auto 28px;
+  max-width: 420px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.nickname__hint.is-error { color: var(--orange); font-weight: 600; }
+
+/* ===== This or That ===== */
+.question {
+  max-width: 820px;
+  margin: 0 auto;
+  padding-top: 4vh;
+  text-align: center;
+}
+
+.question__step {
+  margin: 0 0 12px;
+  font: 13px var(--font-mono);
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.question__lead {
+  min-height: 1.4em;
+  margin: 0 0 6px;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(19px, 2.4vw, 24px);
+  color: var(--muted);
+}
+
+.question__title {
+  margin: 0 0 44px;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(34px, 5.5vw, 60px);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.choice-cards {
+  display: flex;
+  justify-content: center;
+  gap: clamp(16px, 3vw, 32px);
+}
+
+/* A tilted colour card: name top-left, description, sticker icon bottom-left */
+.choice-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: min(320px, 42vw);
+  min-height: 300px;
+  padding: 26px 24px 22px;
+  border: 3px solid transparent;
+  border-radius: 30px;
+  font-family: var(--font-body);
+  text-align: left;
+  cursor: pointer;
+  transform: rotate(-3deg);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.choice-card:nth-child(2) { transform: rotate(3deg); }
+
+.choice-card:hover,
+.choice-card:focus-visible {
+  transform: rotate(0deg) translateY(-6px);
+  box-shadow: 0 18px 34px rgba(0, 0, 0, 0.14);
+  outline: none;
+}
+
+.choice-card.is-chosen {
+  transform: rotate(0deg) scale(1.05);
+  border-color: var(--ink);
+}
+
+.choice-card__label {
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.choice-card__description {
+  margin-top: 10px;
+  font-size: 15px;
+  line-height: 1.45;
+  opacity: 0.85;
+}
+
+.choice-card__icon {
+  width: 72px;
+  height: 72px;
+  margin-top: auto;
+  padding-top: 18px;
+}
+
+.choice-card__icon svg { width: 100%; height: 100%; }
+
+.question__confirm {
+  margin-top: 44px;
+}
+
+/* Progress dots, like the reference */
+.dots {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 32px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--line);
+  transition: width 0.25s ease, background 0.25s ease;
+}
+
+.dot.is-active {
+  width: 26px;
+  border-radius: var(--radius-pill);
+  background: var(--ink);
+}
+
+/* ===== Genres ===== */
+.genre-pills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  max-width: 680px;
+  margin: 0 auto 40px;
+}
+
+.genre-pill {
+  padding: 12px 22px;
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-pill);
+  background: var(--glass);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  box-shadow: 0 4px 16px rgba(70, 60, 130, 0.08);
+  color: var(--ink);
+  font: 500 15px var(--font-body);
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.15s ease;
+}
+
+.genre-pill::before {
+  content: "\2726";
+  margin-right: 8px;
+  font-size: 0.8em;
+  opacity: 0.35;
+}
+
+.genre-pill:hover { transform: translateY(-2px); }
+
+.genre-pill.is-chosen {
+  background: var(--pill-colour);
+  transform: rotate(-2deg) scale(1.06);
+}
+
+.genre-pill.is-chosen::before { opacity: 1; }
+
+.button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Survey screens on small phones: stack the two cards */
+@media (max-width: 600px) {
+  .choice-cards { flex-direction: column; align-items: center; }
+  .choice-card { width: 100%; max-width: 340px; min-height: 0; }
+  .choice-card__icon { width: 56px; height: 56px; }
+}
+
+/* ===== Lyrics ===== */
+#screen-lyrics {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 24px 16px 0;
+  overflow: hidden;
+}
+
+.lyrics {
+  position: relative;
+  z-index: 1;                       /* above the falling letters */
+  max-width: 680px;
+  margin: 0 auto;
+  padding-top: 8vh;
+  text-align: center;
+}
+
+.lyrics__title {
+  display: block;
+  margin-bottom: 28px;
+  font-family: var(--font-display);
+  font-size: clamp(32px, 5vw, 54px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+/* Optional song name, above the lyrics box */
+.lyrics__name {
+  display: block;
+  width: min(360px, 100%);
+  margin: 0 auto 14px;
+  padding: 11px 18px;
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-pill);
+  background: var(--glass);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  color: var(--ink);
+  font: 500 15px var(--font-body);
+  text-align: center;
+  outline: none;
+}
+
+.lyrics__name:focus { border-color: var(--orange); }
+
+/* Multi-line text box for the lyrics */
+.lyrics__box {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 18px 22px;
+  border: 1px solid var(--glass-border);
+  border-radius: 28px;
+  background: var(--glass-strong);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-shadow);
+  text-align: left;
+  transition: border-color 0.15s ease;
+}
+
+.lyrics__box:focus-within { border-color: var(--orange); box-shadow: var(--glass-shadow), 0 0 0 3px rgba(232, 97, 60, 0.18); }
+
+.lyrics__icon {
+  flex: none;
+  width: 30px;
+  height: 30px;
+  margin-top: 1px;
+}
+
+/* Starts at about 3 lines and grows with the lyrics (lyrics.js), up to half the screen, then scrolls */
+.lyrics__input {
+  flex: 1;
+  min-height: 84px;
+  max-height: 50vh;
+  padding: 4px 0;
+  border: none;
+  background: transparent;
+  color: var(--ink);
+  font: 400 17px/1.5 var(--font-body);
+  resize: none;
+  outline: none;
+  overflow-y: auto;
+}
+
+.lyrics__input::placeholder { color: #B5B5AF; }
+
+/* Error message on the left, character count on the right; always clear of the button below */
+.lyrics__meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  min-height: 1.5em;
+  margin-bottom: 24px;
+  padding: 10px 6px 0;
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.lyrics__error { color: var(--orange); font-weight: 600; }
+
+.lyrics__count {
+  flex: none;
+  font-family: var(--font-mono);
+  color: var(--muted);
+}
+
+.lyrics__count.is-over { color: var(--orange); font-weight: 600; }
+
+/* Falling letters */
+.letter-area {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: min(26vh, 220px);
+  overflow: hidden;
+  touch-action: pan-y;
+}
+
+.letter {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0 2px;
+  font: 400 40px/1 var(--font-display);
+  color: #C9C3DA;                    /* a soft lilac grey; every fourth letter takes an aura colour */
+  user-select: none;
+  cursor: grab;
+  will-change: transform;
+}
+
+.letter:active { cursor: grabbing; }
+
+/* ===== Loading ===== */
+#screen-loading.is-active {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 24px;
+}
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  max-width: 900px;
+  text-align: center;
+}
+
+.loading__label {
+  margin: 0;
+  font: 12px var(--font-mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Equaliser bars bouncing while the lyrics are read */
+.equaliser {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 36px;
+}
+
+.equaliser span {
+  width: 8px;
+  height: 100%;
+  border-radius: 4px;
+  transform-origin: bottom;
+  animation: equalise 0.9s ease-in-out infinite;
+}
+
+.equaliser span:nth-child(1) { background: #F2A7C8; animation-delay: -0.1s; }
+.equaliser span:nth-child(2) { background: #F5CF7A; animation-delay: -0.5s; }
+.equaliser span:nth-child(3) { background: #B9CBE8; animation-delay: -0.3s; }
+.equaliser span:nth-child(4) { background: #F4A3A0; animation-delay: -0.7s; }
+.equaliser span:nth-child(5) { background: #B3A6F2; animation-delay: -0.2s; }
+.equaliser span:nth-child(6) { background: #9DD6A6; animation-delay: -0.6s; }
+.equaliser span:nth-child(7) { background: #8FDCCB; animation-delay: -0.4s; }
+
+@keyframes equalise {
+  0%, 100% { transform: scaleY(0.25); }
+  50% { transform: scaleY(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .equaliser span { animation: none; transform: scaleY(0.6); }
+}
+
+/* ===== Glass style ===== */
+/* Every page sits on plain white, like the homepage */
+.mesh { position: relative; isolation: isolate; overflow-x: clip; background: #FFFFFF; }
+
+/* A frosted panel */
+.glass {
+  border: 1px solid var(--glass-border);
+  background: var(--glass);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-shadow);
+}
+
+/* Browsers without blur: make the panels more solid so text stays readable */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  :root { --glass: rgba(255, 255, 255, 0.85); --glass-strong: rgba(255, 255, 255, 0.9); }
+}
+
+/* ===== Result: 4 sliding cards ===== */
+#screen-result {
+  --card-width: min(380px, 84vw);
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 6vh 0 48px;
+  color: var(--ink);
+}
+
+/* Slow entrance: the page fades in, then the cards slide in from the right one by one */
+#screen-result.is-entering { animation: page-fade 0.9s ease both; }
+#screen-result.is-entering .result-card { animation: card-in 1s cubic-bezier(0.22, 1, 0.36, 1) both; }
+#screen-result.is-entering .result-card:nth-child(1) { animation-delay: 0.35s; }
+#screen-result.is-entering .result-card:nth-child(2) { animation-delay: 0.55s; }
+#screen-result.is-entering .result-card:nth-child(3) { animation-delay: 0.75s; }
+#screen-result.is-entering .result-card:nth-child(4) { animation-delay: 0.95s; }
+#screen-result.is-entering .result-card:nth-child(5) { animation-delay: 1.15s; }
+#screen-result.is-entering .carousel__controls { animation: page-fade 0.8s ease 1.3s both; }
+
+@keyframes page-fade { from { opacity: 0; } }
+@keyframes card-in { from { opacity: 0; transform: translateX(160px) rotate(2deg); } }
+
+@media (prefers-reduced-motion: reduce) {
+  #screen-result.is-entering,
+  #screen-result.is-entering .result-card,
+  #screen-result.is-entering .carousel__controls { animation: none; }
+}
+
+.carousel { position: relative; }
+
+/* A row of cards: swipe, drag, or use the dots. The middle card snaps to the centre. */
+.carousel__track {
+  display: flex;
+  align-items: stretch;             /* every card as tall as the tallest */
+  gap: 24px;
+  padding: 12px calc(50% - var(--card-width) / 2) 24px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  cursor: grab;
+}
+
+.carousel__track::-webkit-scrollbar { display: none; }
+.carousel__track.is-dragging { cursor: grabbing; scroll-snap-type: none; user-select: none; }
+
+.result-card {
+  --card-accent: var(--yellow);      /* each card's own colour, set by result.js */
+  --card-accent-text: var(--ink);
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: var(--card-width);
+  min-height: 560px;
+  padding: 32px 28px 28px;
+  border: 1px solid var(--glass-border);
+  border-radius: 32px;
+  /* frosted glass, tinted with the card's own colour */
+  background: linear-gradient(160deg, var(--glass-strong),
+              color-mix(in srgb, var(--card-accent) 22%, rgba(255, 255, 255, 0.3)));
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  color: var(--ink);
+  text-align: center;
+  scroll-snap-align: center;
+  box-shadow: var(--glass-shadow);
+  transform: scale(0.92);
+  opacity: 0.75;
+  transition: transform 0.35s ease, opacity 0.35s ease;
+}
+
+.result-card.is-active { transform: scale(1); opacity: 1; }
+
+/* Side cards: click them to bring them to the middle */
+.result-card:not(.is-active) { cursor: pointer; }
+.result-card:not(.is-active):hover { transform: scale(0.95) translateY(-6px); opacity: 0.95; }
+
+/* Sticker circle at the top of each card */
+.result-card__sticker {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 96px;
+  height: 96px;
+  margin-bottom: 18px;
+  border: 1px solid var(--glass-border);
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #FFFFFF, var(--card-accent) 70%);
+  box-shadow: 0 6px 20px rgba(70, 60, 130, 0.12);
+  color: var(--card-accent-text);
+  font-size: 48px;
+  transform: rotate(-8deg);
+}
+
+.result-card__sticker--small { width: 72px; height: 72px; font-size: 34px; }
+
+.result-card__kicker {
+  margin: 0 0 8px;
+  font: 12px var(--font-mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.result-card__title {
+  margin: 0 0 10px;
+  font: 400 clamp(32px, 4vw, 42px)/1.05 var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+.result-card__match {
+  margin: 0 0 16px;
+  padding: 4px 14px;
+  border-radius: var(--radius-pill);
+  background: var(--card-accent);
+  color: var(--card-accent-text);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.result-card__tagline { margin: 0 0 10px; font-weight: 600; font-size: 16px; }
+
+.result-card__text { margin: 0 0 18px; font-size: 15px; line-height: 1.55; }
+
+.result-card__label {
+  margin: 22px 0 10px;
+  font: 12px var(--font-mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Dots under the cards */
+.carousel__controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  margin-top: 4px;
+}
+
+.carousel__dots {
+  display: flex;
+  gap: 8px;
+  padding: 8px 12px;
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-pill);
+  background: var(--glass);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+}
+
+.carousel__dots .dot {
+  width: 9px;
+  height: 9px;
+  border: none;
+  border-radius: 50%;
+  padding: 0;
+  background: rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: width 0.25s ease, background 0.25s ease;
+}
+
+.carousel__dots .dot.is-active {
+  width: 26px;
+  border-radius: var(--radius-pill);
+  background: var(--ink);
+}
+
+/* Equal-height cards stay balanced: each card's last part sits at the bottom, and the songs card is centred */
+.result-card--songs { justify-content: center; }
+
+/* Songs card */
+.song-list { display: grid; gap: 14px; width: 100%; margin-bottom: 20px; }
+
+.song-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 16px 18px;
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 4px 16px rgba(70, 60, 130, 0.08);
+  text-align: left;
+}
+
+.song-item__rank {
+  align-self: flex-start;
+  margin-bottom: 6px;
+  padding: 2px 10px;
+  border-radius: var(--radius-pill);
+  background: var(--card-accent);
+  color: var(--card-accent-text);
+  font: 11px var(--font-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.song-item__title { font: 400 22px var(--font-display); }
+.song-item__artist { font-size: 14px; color: var(--muted); text-transform: capitalize; }
+
+/* ----- Data pictures (viz.js) ----- */
+.viz-area { position: relative; width: 100%; }
+
+/* Tooltip for tiles, domes and steps */
+.viz-tip {
+  position: absolute;
+  z-index: 5;
+  transform: translate(-50%, -100%);
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  background: rgba(22, 22, 22, 0.78);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  color: var(--white);
+  font: 12px var(--font-mono);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* Card 1: hero number and the lyrics tapestry */
+.hero-number {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 10px;
+  margin: 2px 0 6px;
+}
+
+.hero-number__value { font: 700 64px/1 var(--font-body); letter-spacing: -0.05em; text-shadow: 0 0 28px rgba(255, 255, 255, 0.95); }
+.hero-number__label { font: 400 26px var(--font-display); text-transform: capitalize; }
+
+.result-card__text--small { margin-bottom: 14px; font-size: 13px; color: var(--muted); }
+
+/* The lyrics, word by word. The block fades out at the bottom if the lyrics are long. */
+.tapestry {
+  max-height: 340px;
+  overflow: hidden;
+  font-size: 15px;
+  line-height: 2.05;
+  text-align: left;
+  color: #8E8A99;                    /* plain words: soft grey */
+}
+
+.tapestry.is-long {
+  -webkit-mask-image: linear-gradient(to bottom, #000 80%, transparent);
+  mask-image: linear-gradient(to bottom, #000 80%, transparent);
+}
+
+.lyric-word { animation: word-in 0.4s ease both; }
+
+/* A word that made us feel something: dark text on a light tint of its emotion, underlined in full colour */
+.lyric-word--felt {
+  padding: 1px 4px;
+  border-radius: 5px;
+  background: color-mix(in srgb, var(--felt) 22%, transparent);
+  box-shadow: inset 0 -2px 0 var(--felt);
+  color: var(--ink);
+  font-weight: 600;
+  cursor: default;
+}
+
+.lyric-word--felt:hover { background: color-mix(in srgb, var(--felt) 38%, transparent); }
+
+@keyframes word-in { from { opacity: 0; } }
+
+.tapestry-legend {
+  display: grid;
+  gap: 6px;
+  width: 100%;
+  margin: auto 0 0;                 /* at the bottom of the card */
+  padding: 16px 0 0;
+  list-style: none;
+  font-size: 13.5px;
+  text-align: left;
+}
+
+.tapestry-key { display: grid; grid-template-columns: 14px 1fr auto; align-items: center; gap: 10px; }
+.tapestry-key__swatch { width: 14px; height: 14px; border-radius: 4px; }
+.tapestry-key__swatch--plain { background: #8E8A99; }          /* plain words are soft grey */
+.tapestry-key__label { text-transform: capitalize; }
+.tapestry-key:nth-child(-n+3) .tapestry-key__label { font-weight: 600; }
+.tapestry-key__value { font-family: var(--font-mono); color: var(--muted); }
+
+/* Card 2: orbit of domes */
+.orbit { margin: 4px 0 6px; }
+.orbit svg { display: block; width: 100%; height: auto; overflow: visible; }
+.orbit__ring { fill: none; stroke: var(--white); stroke-width: 1.5; opacity: 0.9; }
+
+.dome {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: dome-rise 0.9s cubic-bezier(0.34, 1.4, 0.64, 1) both;
+  cursor: default;
+}
+
+.dome__body { fill-opacity: 0.78; stroke: rgba(255, 255, 255, 0.9); stroke-width: 2; }
+.dome__base { fill-opacity: 1; filter: brightness(0.85); stroke: rgba(255, 255, 255, 0.9); stroke-width: 2; }
+.dome__pill { fill: rgba(255, 255, 255, 0.85); stroke: rgba(22, 22, 22, 0.18); stroke-width: 1; }
+.dome__label { font: 600 11px var(--font-mono); text-anchor: middle; fill: var(--ink); }
+.dome__label--inside { font: 700 22px var(--font-body); letter-spacing: -0.02em; }
+.dome:hover .dome__body { fill-opacity: 1; }
+
+@keyframes dome-rise { from { opacity: 0; transform: scaleY(0); } }
+
+.orbit-ranking {
+  display: grid;
+  grid-template-columns: 1fr 1fr;   /* two columns keep this card about as tall as the others */
+  gap: 6px 14px;
+  width: 100%;
+  margin: auto 0 0;                 /* sits at the bottom of the card */
+  padding: 12px 0 0;
+  border-top: 1px solid var(--line);
+  list-style: none;
+  font-size: 12px;
+  text-align: left;
+}
+
+.orbit-ranking li { display: grid; grid-template-columns: 18px minmax(0, 1fr) auto; align-items: center; gap: 6px; min-width: 0; }
+.orbit-ranking li > span:nth-child(2) { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.orbit-ranking li:first-child { font-weight: 600; }
+.orbit-ranking li > span:last-child { font-family: var(--font-mono); color: var(--muted); }
+
+.orbit-ranking__dot {
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  font-size: 11px;
+}
+
+/* ----- Card 3: by the numbers ----- */
+.result-card--numbers { text-align: left; align-items: stretch; }
+.result-card--numbers .result-card__kicker { align-self: center; }
+.result-card--numbers .result-card__label { text-align: left; }
+
+.stat-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.stat-tile--wide { grid-column: 1 / -1; }
+
+.stat-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 4px 16px rgba(70, 60, 130, 0.08);
+}
+
+.stat-tile__value {
+  overflow: hidden;
+  font: 600 18px/1.15 var(--font-body);
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.stat-tile__label { font-size: 11.5px; color: var(--muted); }
+
+/* The hero number: a whole row, very big */
+.stat-tile--hero { grid-column: 1 / -1; padding: 6px 0 10px; border: none; background: none; box-shadow: none; }
+.stat-tile--hero .stat-tile__value { font: 700 76px/1 var(--font-body); letter-spacing: -0.05em; text-shadow: 0 0 28px rgba(255, 255, 255, 0.95); }
+.stat-tile--hero .stat-tile__label { font-size: 14px; }
+
+/* Emotion staircase: stepped columns, largest first, with a halftone dot texture */
+.staircase {
+  display: grid;
+  grid-template-columns: repeat(var(--steps), 1fr);
+  gap: 2px;
+  align-items: end;
+  height: 230px;
+}
+
+.step { display: flex; flex-direction: column; align-items: center; height: 100%; min-width: 0; }
+
+/* The track holds the value and the bar, so every bar stands on the same baseline */
+.step__track { display: flex; flex: 1; flex-direction: column; justify-content: flex-end; width: 100%; min-height: 0; }
+.step__value { margin-bottom: 4px; font: 600 12px var(--font-mono); text-align: center; }
+
+.step__bar {
+  flex: none;
+  width: 100%;
+  border-radius: 4px 4px 0 0;              /* rounded at the data end, square at the baseline */
+  background-color: var(--card-accent);           /* replaced by the feeling's aura colour (viz.js) */
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.75) 1.2px, transparent 1.6px);
+  background-size: 6px 6px;
+  transform-origin: bottom;
+  animation: step-grow 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.step:hover .step__bar { filter: brightness(1.08); }
+
+.step__label {
+  height: 74px;
+  margin-top: 6px;
+  overflow: hidden;
+  font-size: 11.5px;
+  text-transform: capitalize;
+  writing-mode: vertical-rl;
+  text-align: end;                         /* after the half turn, this puts the text right under the bar */
+  transform: rotate(180deg);
+  white-space: nowrap;
+}
+
+.staircase__missing { margin: auto 0 0; padding-top: 10px; font-size: 12.5px; color: var(--muted); }
+
+@keyframes step-grow { from { transform: scaleY(0); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .lyric-word, .dome, .step__bar { animation: none; }
+}
+
+/* ===== Your aura (aura.js) ===== */
+#screen-aura { min-height: 100vh; min-height: 100dvh; padding: 6vh 16px 48px; }
+
+.aura { max-width: 1180px; margin: 0 auto; }
+.aura__header { margin-bottom: 20px; text-align: center; }
+.aura__title { margin: 0 0 6px; font: 400 clamp(40px, 6vw, 64px)/1 var(--font-display); letter-spacing: -0.02em;
+                text-shadow: 0 0 30px rgba(255, 255, 255, 0.95); }
+.aura__subtitle { margin: 0; color: var(--muted); }
+
+/* Your overall colour under the title: a soft glowing swatch, its name, and what it means */
+.glow-line { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 6px 10px; margin: 4px 0 10px; }
+.glow-line[hidden] { display: none; }
+.glow-line__swatch { width: 18px; height: 18px; border-radius: 50%; box-shadow: 0 0 14px 4px currentColor; color: inherit; }
+.glow-line__name { font: italic 400 20px var(--font-display); }
+.glow-line__meaning { font-size: 14px; color: var(--muted); }
+
+/* The aura gets the whole width; the side cards sit in a row under it, then your colours over time and your stats */
+.aura__layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; align-items: start; }
+
+.aura__stage {
+  position: relative;
+  order: 1;
+  height: min(82vh, 860px);
+  min-height: 480px;
+  overflow: hidden;
+  border-radius: 32px;
+}
+
+.aura__canvas { position: absolute; inset: 0; touch-action: none; }
+.aura__canvas.is-panning { cursor: grabbing !important; }
+
+.aura__empty {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  color: var(--muted);
+  pointer-events: none;
+}
+
+.aura__empty[hidden] { display: none; }
+
+.aura__controls { position: absolute; top: 14px; right: 14px; display: flex; flex-direction: column; gap: 6px; }
+
+.aura__control {
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.7);
+  font: 600 18px var(--font-body);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.aura__control:hover { background: var(--white); }
+
+.aura-legend {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  max-width: calc(100% - 28px);
+  margin: 0;
+  padding: 8px 12px;
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.65);
+  list-style: none;
+  font-size: 12.5px;
+  pointer-events: none;
+}
+
+.aura-legend li { display: flex; align-items: center; gap: 6px; }
+.aura-legend__dot { width: 10px; height: 10px; border-radius: 50%; }
+
+/* "Show emotions" switch, bottom-right of the aura: labels are off until it's turned on */
+.aura-switch {
+  position: absolute; right: 14px; bottom: 14px;
+  display: flex; align-items: center; gap: 8px;
+  padding: 7px 12px; border: 1px solid var(--glass-border); border-radius: 999px;
+  background: rgba(255, 255, 255, 0.8); font-size: 12px; color: var(--ink); cursor: pointer;
+}
+.aura-switch input { position: absolute; opacity: 0; pointer-events: none; }
+.aura-switch__track {
+  position: relative; width: 28px; height: 16px; border-radius: 999px;
+  background: rgba(22, 22, 22, 0.18); transition: background 0.2s;
+}
+.aura-switch__track::after {
+  content: ""; position: absolute; top: 2px; left: 2px; width: 12px; height: 12px;
+  border-radius: 50%; background: #FFFFFF; transition: transform 0.2s;
+}
+.aura-switch input:checked + .aura-switch__track { background: var(--ink); }
+.aura-switch input:checked + .aura-switch__track::after { transform: translateX(12px); }
+.aura-switch input:focus-visible + .aura-switch__track { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+/* The first view is the aura and its colour legend: the hint appears with "Show emotions" */
+.aura__stage:not(.is-labelled) .aura__hint { display: none; }
+
+.aura__hint { position: absolute; top: 18px; left: 20px; margin: 0; font-size: 12px; color: var(--muted); pointer-events: none; }
+
+.aura__main { display: contents; }                 /* its cards join the page grid, so they can be reordered */
+.aura-timeline-card { order: 3; }
+.stats-card { order: 4; }
+
+/* Your colours over time: one soft square per song, oldest to newest */
+.aura-timeline-card { position: relative; }
+.colour-strip { display: grid; grid-template-columns: repeat(auto-fill, minmax(26px, 1fr)); gap: 6px; }
+.colour-strip__song {
+  aspect-ratio: 1; border-radius: 8px; cursor: default;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+  animation: swatch-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  transition: transform 0.15s;
+}
+.colour-strip__song:hover { transform: scale(1.15); }
+.colour-strip__ends { display: flex; justify-content: space-between; margin-top: 8px; font: 11px var(--font-mono); color: var(--muted); }
+
+@keyframes swatch-in { from { opacity: 0; transform: scale(0.6); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .colour-strip__song { animation: none; }
+}
+
+.aura__side {
+  order: 2;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+  align-items: start;
+}
+
+.aura-card { display: grid; gap: 10px; padding: 22px; border-radius: 28px; }
+.aura-card__title { margin: 0; font: 400 26px var(--font-display); }
+.aura-card__text { margin: 0; font-size: 14px; color: var(--muted); }
+
+.aura-card__input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.7);
+  font: 15px var(--font-body);
+  color: var(--ink);
+}
+
+.aura-card__lyrics { min-height: 130px; resize: vertical; }
+.aura-card__error { margin: 0; min-height: 0; font-size: 13.5px; color: #B3261E; }
+.aura-card__error:empty { display: none; }
+
+.aura-songs { display: grid; gap: 6px; max-height: 260px; margin: 0; padding: 0; overflow-y: auto; list-style: none; }
+.aura-songs:empty::after { content: "No songs yet."; color: var(--muted); font-size: 14px; }
+
+.aura-song {
+  display: grid;
+  grid-template-columns: 26px 1fr auto;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.aura-song__number {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--white);
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--white);
+  font: 600 10px var(--font-mono);
+}
+
+.aura-song__text { display: flex; flex-direction: column; min-width: 0; }
+.aura-song__title { overflow: hidden; font-weight: 600; font-size: 14px; white-space: nowrap; text-overflow: ellipsis; }
+.aura-song__meta { font-size: 12px; color: var(--muted); }
+.aura-song__remove { border: none; background: none; color: var(--muted); font-size: 18px; cursor: pointer; }
+.aura-song__remove:hover { color: var(--ink); }
+.aura-song__actions { display: flex; align-items: center; gap: 2px; }
+.aura-song__rename { border: none; background: none; color: var(--muted); font-size: 14px; cursor: pointer; }
+.aura-song__rename:hover { color: var(--ink); }
+.aura-song__edit { width: 100%; padding: 4px 8px; border: 1px solid var(--glass-border); border-radius: 8px;
+                    background: var(--white); font: 600 14px var(--font-body); color: var(--ink); }
+.aura-song__edit-error { font-size: 12px; color: #B3261E; }
+
+@media (max-width: 900px) {
+  .aura__stage { height: 70vh; }
+  .aura__hint { display: none; }
+}
+
+/* ----- Your stats: the result cards as a stack ----- */
+.stats-card[hidden], .stats-stack[hidden] { display: none; }
+.stats-card__head { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.stats-card__head .aura-card__text { margin: 4px 0 0; }
+
+.stats-stack__deck { position: relative; margin-top: 14px; }
+
+/* Each card sits on top of the next one: lower, smaller and tilted the further back it is */
+.stats-stack__deck .result-card {
+  --card-width: min(380px, 80vw);
+  position: absolute;
+  top: 0;
+  left: 50%;
+  margin: 0;
+  opacity: 1;
+  overflow: hidden;
+  transform-origin: 50% 100%;       /* shrink towards the bottom, so the cards behind peek out below */
+  transform: translateX(-50%) translateY(calc(var(--depth) * 16px)) scale(calc(1 - var(--depth) * 0.05))
+             rotate(calc(var(--depth) * 1.2deg));
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
+  cursor: default;
+}
+
+/* Solid cards in a stack, so the ones behind don't show through the front one */
+.stats-stack__deck .result-card {
+  background: linear-gradient(160deg, #FFFFFF, color-mix(in srgb, var(--card-accent) 16%, #FFFFFF));
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+.stats-stack__deck .result-card:not(.is-front) { pointer-events: none; }
+
+/* Landscape cards in the stack: text on the left, the picture on the right */
+.stats-stack__deck .result-card.is-landscape {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  gap: 32px;
+  width: min(760px, calc(100% - 24px));
+  min-height: 0;
+  padding: 30px 34px;
+  text-align: left;
+}
+
+.stats-column { display: flex; flex-direction: column; justify-content: center; min-width: 0; }
+.stats-column--text { align-items: flex-start; }
+.stats-column--text .hero-number { justify-content: flex-start; }
+.stats-column--text .result-card__kicker { align-self: flex-start; text-align: left; }
+.stats-column--text .result-card__sticker { margin-left: 0; }
+.stats-column--text .result-card__title { font-size: clamp(30px, 3.4vw, 38px); }
+.stats-column--picture .result-card__label { margin-top: 0; }
+
+@media (max-width: 700px) {
+  .stats-stack__deck .result-card.is-landscape { grid-template-columns: 1fr; gap: 16px; padding: 24px; }
+}
+.stats-stack__deck .result-card.is-leaving { transform: translateX(10%) translateY(-20px) rotate(8deg); opacity: 0; }
+
+.stats-stack__controls { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 12px; }
+.stats-stack__count { font: 12px var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+
+/* ----- Which aura you're in, and the button for a new one ----- */
+.new-aura { display: grid; gap: 10px; max-width: 460px; margin: 14px auto 0; padding: 18px; border-radius: 22px; text-align: left; }
+.new-aura[hidden] { display: none; }
+.aura-card[hidden] { display: none; }
+.new-aura__text { margin: 0; font-size: 14px; color: var(--muted); }
+.new-aura__buttons { display: flex; flex-wrap: wrap; gap: 8px; }
+.aura-bar__button[hidden] { display: none; }
+
+/* Your auras: a soft colour swatch each, the one on screen highlighted */
+.aura-entry__swatch { width: 26px; height: 26px; border-radius: 8px; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.6); }
+.aura-entry__open { padding: 0; border: none; background: none; text-align: left; color: inherit; cursor: pointer; }
+.aura-entry__open:hover .aura-song__title { text-decoration: underline; }
+.aura-entry.is-showing .aura-song__title { font-weight: 700; }
+
+.aura-bar { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+.aura-bar__label { font: 12px var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+
+.aura-bar__button {
+  padding: 6px 14px;
+  border: 1px dashed rgba(22, 22, 22, 0.3);
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.5);
+  color: var(--ink);
+  font: 600 13px var(--font-body);
+  cursor: pointer;
+}
+
+.aura-bar__button:hover { background: var(--white); }
+.aura-bar__export { border-style: solid; border-color: var(--ink); background: var(--ink); color: var(--white); }
+.aura-bar__export:hover { background: #333; }
+
+/* The teaser card: a glowing panel with your aura half hidden in a blur */
+.result-card--teaser {
+  position: relative;
+  justify-content: flex-end;
+  overflow: hidden;
+  border-color: var(--glass-border);
+  background:
+    radial-gradient(90% 60% at 25% 10%, #FFFFFF, transparent 70%),
+    linear-gradient(165deg, #FFFFFF, #F4F1FC 55%, #FCF1F5);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.teaser__canvas {
+  position: absolute;
+  inset: 0 0 30%;
+  width: 100%;
+  height: 70%;
+  filter: blur(5px);
+  opacity: 0.85;
+  transition: filter 0.6s ease, opacity 0.6s ease;
+}
+
+/* A little more of the aura shows when you come closer */
+.result-card--teaser:hover .teaser__canvas { filter: blur(1.5px); opacity: 1; }
+
+.teaser__text { position: relative; text-align: left; }
+.teaser__kicker { margin: 0 0 8px; font: 12px var(--font-mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.teaser__title { margin: 0 0 10px; font: 400 32px/1.08 var(--font-display); letter-spacing: -0.01em; }
+.teaser__body { margin: 0 0 22px; font-size: 14.5px; line-height: 1.5; color: var(--muted); }
+
+.teaser__cta {
+  position: relative;
+  align-self: flex-start;
+  padding: 12px 22px;
+  border-radius: var(--radius-pill);
+  background: var(--ink);
+  color: var(--white);
+  font: 600 15px var(--font-body);
+  transition: transform 0.2s ease;
+}
+
+.result-card--teaser:hover .teaser__cta { transform: translateX(4px); }
+
+@media (max-width: 600px) {
+  .result-card { min-height: 520px; padding: 26px 20px 22px; }
+}
+
+/* ===== Home button (top right on every page except the homepage; scrolls with the page) ===== */
+.home-button {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  z-index: 15;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 52px;
+  padding: 0 20px 0 16px;
+  border: 1px solid var(--glass-border);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.6);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  color: var(--ink);
+  font: 600 15px var(--font-body);
+  cursor: pointer;
+  box-shadow: var(--glass-shadow);
+  transition: transform 0.15s ease;
+}
+
+.home-button[hidden] { display: none; }
+.home-button:hover { transform: translateY(-2px); }
+.home-button:focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; }
+.home-button svg { width: 22px; height: 22px; }
+
+@media (max-width: 600px) {
+  .home-button { top: 16px; right: 16px; height: 46px; padding: 0 14px; }
+  .home-button span { display: none; }          /* just the house icon on phones */
+}
+
+/* ===== Toast message ===== */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  z-index: 10;
+  padding: 12px 20px;
+  border-radius: var(--radius-pill);
+  background: var(--ink);
+  color: var(--white);
+  font-size: 14px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 10px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.toast.is-visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* ===== Small screens ===== */
+@media (max-width: 600px) {
+  .hero { padding-top: 3vh; }
+  .hero__subtitle br { display: none; }
+}
