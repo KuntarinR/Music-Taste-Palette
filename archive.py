@@ -68,7 +68,6 @@ class Archive:
         data.setdefault("attempts", [])
         data.setdefault("song_count", 0)
         data.setdefault("songs", [])
-        # files from before auras existed: everything so far is aura 1
         if not data.get("auras"):
             started = data["songs"][0]["date"] if data["songs"] else self.now()
             data["auras"] = [{"number": 1, "name": "", "started": started}]

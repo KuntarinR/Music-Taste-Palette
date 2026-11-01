@@ -46,8 +46,8 @@ HOW TO RUN IT
 3. Start the app:
        macOS / Linux:   python3 main.py
        Windows:         python main.py      (or: py main.py)
-4. Your web browser opens the app by itself. If it doesn't, open this address:
-       http://127.0.0.1:8000
+4. Your web browser opens the app by itself. If it doesn't, open the address the
+   terminal prints (the app picks a free port by itself each time).
 5. To stop the app, press Ctrl+C in the terminal.
 
 TEXT MODE (no browser, e.g. inside Ed):
@@ -55,7 +55,6 @@ TEXT MODE (no browser, e.g. inside Ed):
    The same questions and the same Python analysis, all in the terminal. Paste the lyrics,
    then press Enter on an empty line.
 
-If port 8000 is already in use, the app says so. Close the other program using it and try again.
 
 A quick way to try it:
   Get started -> type a nickname -> answer the 5 questions -> pick 1 to 3 genres ->

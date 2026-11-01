@@ -22,7 +22,7 @@ from storage import load_all_data
 import text_mode
 
 HOST = "127.0.0.1"
-PORT = 8000
+PORT = 0
 STATIC_DIR = Path(__file__).parent / "static"
 PROFILES_DIR = Path(__file__).parent / "profiles"
 MAX_REQUEST_BYTES = 200_000
@@ -107,7 +107,7 @@ class MusicApp:
         lyrics, emotions = self.read_lyrics(request)
         song = self.archive.add_song(name, title, emotions.percentages(),
                                      self.song_words(self.analyser.word_map(lyrics)), "added")
-        return {"song_id": song["id"], "player": self.archive.view(name)}         # back to your current aura
+        return {"song_id": song["id"], "player": self.archive.view(name)}
 
     def rename_song(self, request):
         name = self.read_name(request)
@@ -278,11 +278,11 @@ def main():
     try:
         server = ThreadingHTTPServer((HOST, PORT), RequestHandler)
     except OSError:
-        sys.exit(f"Error: port {PORT} is already in use. Close the other copy of the app and try again.")
-    address = f"http://{HOST}:{PORT}"
+        sys.exit("Error: the app couldn't start its local server. Please try again.")
+    address = f"http://{HOST}:{server.server_address[1]}"
     print(f"The app is opening in your browser. If it doesn't, open {address}")
     print("Press Ctrl+C to stop.")
-    threading.Timer(0.5, webbrowser.open, args=(address,)).start()     # once the server is listening
+    threading.Timer(0.5, webbrowser.open, args=(address,)).start()
     try:
         server.serve_forever()
     except KeyboardInterrupt:
