@@ -19,8 +19,9 @@ PLEASE NOTE (as asked in the submission instructions)
 -----------------------------------------------------
 - Web-based / networking application: YES.
   main.py starts a small local web server (Python's built-in http.server, on 127.0.0.1 only)
-  and the app is used in a web browser. It will NOT work inside Ed's environment.
+  and the app is used in a web browser, so the browser version will NOT work inside Ed.
   Please run it on your own computer, using the steps below.
+  Inside Ed (or any terminal with no browser), run the text mode instead:  python3 main.py --text
 - GUI: the interface is a web page (HTML, CSS and JavaScript in the static/ folder),
   shown in the browser.
 - Libraries outside Python's built-in libraries: NONE. Nothing needs to be installed.
@@ -49,6 +50,11 @@ HOW TO RUN IT
        http://127.0.0.1:8000
 5. To stop the app, press Ctrl+C in the terminal.
 
+TEXT MODE (no browser, e.g. inside Ed):
+       python3 main.py --text
+   The same questions and the same Python analysis, all in the terminal. Paste the lyrics,
+   then press Enter on an empty line.
+
 If port 8000 is already in use, the app says so. Close the other program using it and try again.
 
 A quick way to try it:
@@ -63,13 +69,14 @@ RUNNING THE TESTS
 The unit tests only need Python (no browser). From the same folder:
     python3 -m unittest discover tests
 (Windows: python -m unittest discover tests)
-There are 64 tests, covering the Python modules and the web API
+There are 66 tests, covering the Python modules and the web API
 (models.py and storage.py are tested through the others).
 
 
 FILES
 -----
 main.py            starts the web server and answers the page's requests (the JSON API)   <- run this
+text_mode.py       the same app in the terminal (python3 main.py --text)
 analyser.py        reads lyrics: cleaning, phrases, negation, intensifiers, chorus weighting
 compatibility.py   matches emotions to aesthetics (cosine similarity) and recommends songs
 archive.py         saves each player's songs and auras; works out each aura, its

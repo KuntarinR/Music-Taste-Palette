@@ -17,6 +17,8 @@ python3 main.py
 
 (Windows: `python main.py`.) The app opens in your web browser by itself (if it doesn't, open http://127.0.0.1:8000). Press Ctrl+C to stop.
 
+**No browser (e.g. inside Ed)?** Run the text mode: `python3 main.py --text`. Same questions, same Python analysis, all in the terminal.
+
 Keep the folders as they are: `main.py` must sit next to `data/` and `static/`.
 Opening `static/index.html` directly won't work, because the page needs `main.py` running.
 
@@ -31,6 +33,7 @@ python3 -m unittest discover tests
 | File | What it does |
 |---|---|
 | `main.py` | starts the web server and answers the page's requests (run this) |
+| `text_mode.py` | the same app in the terminal (`python3 main.py --text`) |
 | `analyser.py` | reads lyrics: cleaning, phrases, negation, intensifiers, chorus weighting |
 | `compatibility.py` | matches emotions to aesthetics (cosine similarity) and recommends songs |
 | `archive.py` | saves each player's songs and auras; works out each aura, its colour and the stats export |

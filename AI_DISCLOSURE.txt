@@ -14,7 +14,7 @@ MY OWN WORK
 WHERE THE LOGIC IS
 ------------------
 All of the program's logic is in Python: main.py, analyser.py, compatibility.py, archive.py,
-models.py and storage.py. This includes reading the lyrics, scoring the 14 emotions, matching the
+models.py, storage.py and text_mode.py (the terminal version). This includes reading the lyrics, scoring the 14 emotions, matching the
 8 aesthetics (cosine similarity), recommending songs, saving songs and auras, working out each
 aura and its colour, and writing the stats export. The web page only displays what Python sends.
 

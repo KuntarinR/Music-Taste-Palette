@@ -1,6 +1,7 @@
 """RUN THIS FILE: python3 main.py (Windows: python main.py). The app opens in your web browser by itself.
+In a terminal only (e.g. inside Ed): python3 main.py --text
 
-Web-based app (local http.server), so it will NOT work inside Ed; the GUI is a browser page in static/.
+Web-based app (local http.server), so the browser version will NOT work inside Ed; the GUI is a browser page in static/.
 No libraries outside Python's built-ins; the page uses Matter.js, included in static/vendor/.
 """
 
@@ -18,6 +19,7 @@ from archive import Archive
 from compatibility import Matcher
 from models import FAMILY_OF, Aesthetic, SongEntry, Survey
 from storage import load_all_data
+import text_mode
 
 HOST = "127.0.0.1"
 PORT = 8000
@@ -267,6 +269,12 @@ class RequestHandler(SimpleHTTPRequestHandler):
 
 def main():
     RequestHandler.app = MusicApp(load_all_data())
+    if "--text" in sys.argv:
+        try:
+            text_mode.run(RequestHandler.app)
+        except (KeyboardInterrupt, EOFError):
+            print("\nStopped.")
+        return
     try:
         server = ThreadingHTTPServer((HOST, PORT), RequestHandler)
     except OSError:
