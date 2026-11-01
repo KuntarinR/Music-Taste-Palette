@@ -68,7 +68,7 @@ RUNNING THE TESTS
 The unit tests only need Python (no browser). From the same folder:
     python3 -m unittest discover tests
 (Windows: python -m unittest discover tests)
-There are 66 tests, covering the Python modules and the web API
+There are 67 tests, covering the Python modules and the web API
 (models.py and storage.py are tested through the others).
 
 

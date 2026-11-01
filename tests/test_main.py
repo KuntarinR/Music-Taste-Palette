@@ -179,6 +179,11 @@ class TestServer(unittest.TestCase):
         with urllib.request.urlopen(self.base + "/js/app.js") as response:
             self.assertEqual(response.headers["Cache-Control"], "no-cache")
 
+    def test_file_types_do_not_depend_on_the_computer(self):
+        for path, kind in (("/", "text/html"), ("/js/app.js", "text/javascript"), ("/css/style.css", "text/css")):
+            with urllib.request.urlopen(self.base + path) as response:
+                self.assertTrue(response.headers["Content-Type"].startswith(kind), path)
+
     def test_unknown_route_and_bad_json(self):
         self.assertEqual(self.call("/api/nothing", {})[0], 404)
         request = urllib.request.Request(self.base + "/api/analyse", data=b"not json")

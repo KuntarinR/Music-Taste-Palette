@@ -202,9 +202,12 @@ class MusicApp:
 
 
 class RequestHandler(SimpleHTTPRequestHandler):
-    """Serves the files in static/ and answers the /api/ requests."""
+    """Serves the files in static/ and answers the /api/ requests.
+    File types are set here, so pages also load on Windows computers whose settings report them wrongly."""
 
     app = None
+    extensions_map = {**SimpleHTTPRequestHandler.extensions_map, ".html": "text/html", ".css": "text/css",
+                      ".js": "text/javascript", ".json": "application/json", ".png": "image/png"}
     POST_ROUTES = {
         "/api/analyse": "analyse",
         "/api/player": "player",
