@@ -1,0 +1,36 @@
+AI USE DISCLOSURE
+=================
+
+MY OWN WORK
+-----------
+- The idea of the app is my own: reading the emotions in song lyrics, matching people to a music
+  aesthetic, and growing a personal "aura" of colour from every song they add.
+- All the product and design decisions are my own, for example: the This-or-That survey, the result
+  cards, the aura and its overall colour, starting a new aura when your music changes, the colours
+  over time, exporting the lyrics stats, no login (privacy first), and keeping the prototype
+  focused on one person (I removed the friend and share-code features).
+- I wrote the name and tagline of the Rainbow Sunshine aesthetic.
+
+WHERE THE LOGIC IS
+------------------
+All of the program's logic is in Python: main.py, analyser.py, compatibility.py, archive.py,
+models.py and storage.py. This includes reading the lyrics, scoring the 14 emotions, matching the
+8 aesthetics (cosine similarity), recommending songs, saving songs and auras, working out each
+aura and its colour, and writing the stats export. The web page only displays what Python sends.
+
+WHAT AN AI ASSISTANT MADE (Claude, by Anthropic)
+------------------------------------------------
+- The user interface was AI-generated: everything in static/ (HTML, CSS and JavaScript),
+  following my ideas and feedback.
+- The Python code and the unit tests (tests/) were also written with the AI assistant, from my
+  ideas and instructions. I reviewed them and typed parts of models.py and storage.py myself.
+- Data drafted with the AI assistant: lexicon.json, modifiers.json and aesthetics.json (except
+  Rainbow Sunshine's name and tagline). The lexicon was expanded with words selected from the
+  NRC Emotion Intensity Lexicon and cross-checked against the NRC VAD Lexicon; every word's
+  source is listed in docs/lexicon_sources.csv. No NRC files are included.
+- The mood profiles of the songs in songs.json are AI estimates. The song list itself is the
+  Billboard Year-End Hot 100 of 2025.
+
+OTHER
+-----
+- Matter.js 0.20.0 (MIT licence) is a third-party library, included in static/vendor/.
